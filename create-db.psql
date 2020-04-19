@@ -1,0 +1,34 @@
+DROP DATABASE IF EXISTS crowdstreet_demo;
+CREATE DATABASE crowdstreet_demo;
+
+\c crowdstreet_demo;
+
+CREATE TABLE people (
+  id SERIAL PRIMARY KEY,
+  name TEXT
+);
+
+CREATE TABLE vehicle (
+  id SERIAL PRIMARY KEY,
+  name TEXT
+);
+
+CREATE TABLE pet (
+  id SERIAL PRIMARY KEY,
+  name TEXT
+);
+
+CREATE TABLE people_vehicle (
+  people_id  INTEGER NOT NULL REFERENCES people(id),
+  vehicle_id INTEGER NOT NULL REFERENCES vehicle(id),
+  amount     INTEGER NOT NULL,
+  PRIMARY KEY (people_id, vehicle_id)
+);
+
+CREATE TABLE people_pet (
+  people_id  INTEGER NOT NULL REFERENCES people(id),
+  pet_id     INTEGER NOT NULL REFERENCES pet(id),
+  amount     INTEGER NOT NULL,
+  PRIMARY KEY (people_id, pet_id)
+);
+

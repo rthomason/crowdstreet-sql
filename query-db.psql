@@ -1,0 +1,24 @@
+-- 3.2 C --
+
+-- Show everyone's vehicles
+SELECT people.name, vehicle.name, people_vehicle.amount
+FROM people
+LEFT JOIN people_vehicle ON people_vehicle.people_id = people.id
+LEFT JOIN vehicle ON people_vehicle.vehicle_id = vehicle.id;
+
+-- Show everyone's pets
+SELECT people.name, pet.name, people_pet.amount
+FROM people
+LEFT JOIN people_pet ON people_pet.people_id = people.id
+LEFT JOIN pet ON people_pet.pet_id = pet.id;
+
+
+-- 3.2 D --
+
+-- Show all people with at least 2 Pets or 2 Vehicles
+SELECT t.people_name, total_vehicles, total_pets
+FROM
+  (SELECT people.name AS people_name, sum(people_vehicle.amount) AS total_vehicles FROM people, people_vehicle WHERE people.id = people_vehicle.people_id GROUP BY people.name) t,
+  (SELECT people.name AS people_name, sum(people_pet.amount) AS total_pets FROM people, people_pet WHERE people.id = people_pet.people_id GROUP BY people.name) u
+WHERE total_vehicles >= 2 OR total_pets >= 2;
+

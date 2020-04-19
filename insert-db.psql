@@ -1,0 +1,40 @@
+-- SETUP --
+
+INSERT INTO people (name) VALUES ('John');
+INSERT INTO people (name) VALUES ('Mary');
+INSERT INTO people (name) VALUES ('Chen');
+
+INSERT INTO vehicle (name) VALUES ('Truck');
+INSERT INTO vehicle (name) VALUES ('Car');
+INSERT INTO vehicle (name) VALUES ('Bike');
+
+INSERT INTO pet (name) VALUES ('Dog');
+INSERT INTO pet (name) VALUES ('Cat');
+INSERT INTO pet (name) VALUES ('Parrot');
+
+
+-- 3.1 A --
+
+-- Mary has a Truck
+INSERT INTO people_vehicle (people_id, vehicle_id, amount) VALUES (2, 1, 1);
+
+-- John has 2 Cars and 2 Trucks
+INSERT INTO people_vehicle (people_id, vehicle_id, amount) VALUES (1, 1, 2);
+INSERT INTO people_vehicle (people_id, vehicle_id, amount) VALUES (1, 2, 2);
+
+-- Chen has no vehicles
+-- do nothing
+
+
+-- 3.1 B --
+
+-- Mary has no Pets
+-- do nothing
+
+-- John has a Dog
+INSERT INTO people_pet (people_id, pet_id, amount) VALUES (1, 1, 1);
+
+-- Chen has a Parrot and a Cat
+INSERT INTO people_pet (people_id, pet_id, amount) VALUES (3, 3, 1);
+INSERT INTO people_pet (people_id, pet_id, amount) VALUES (3, 2, 1);
+
