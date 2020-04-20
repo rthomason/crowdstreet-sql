@@ -21,3 +21,29 @@ Be sure to update the script for the correct host / port / user.
 
  `./setup.sh`
  
+ ## Output
+ 
+ ```
+- Running queries -
+ name | name  | amount
+------+-------+--------
+ Mary | Truck |      1
+ John | Truck |      2
+ John | Car   |      2
+ Chen |       |
+(4 rows)
+
+ name |  name  | amount
+------+--------+--------
+ John | Dog    |      1
+ Chen | Parrot |      1
+ Chen | Cat    |      1
+ Mary |        |
+(4 rows)
+
+ name | total_pets | total_vehicles
+------+------------+----------------
+ Chen |          2 |
+ John |          1 |              4
+(2 rows)
+```
