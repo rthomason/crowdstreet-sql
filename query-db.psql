@@ -16,9 +16,13 @@ LEFT JOIN pet ON people_pet.pet_id = pet.id;
 -- 3.2 D --
 
 -- Show all people with at least 2 Pets or 2 Vehicles
-SELECT t.people_name, total_vehicles, total_pets
+SELECT people.name, total_pets, total_vehicles
 FROM
-  (SELECT people.name AS people_name, sum(people_vehicle.amount) AS total_vehicles FROM people, people_vehicle WHERE people.id = people_vehicle.people_id GROUP BY people.name) t,
-  (SELECT people.name AS people_name, sum(people_pet.amount) AS total_pets FROM people, people_pet WHERE people.id = people_pet.people_id GROUP BY people.name) u
+  (SELECT people_id, sum(people_pet.amount) AS total_pets FROM people_pet GROUP BY people_id) t
+FULL OUTER JOIN
+  (SELECT people_id, sum(people_vehicle.amount) AS total_vehicles FROM people_vehicle GROUP BY people_id) u
+ON t.people_id = u.people_id
+FULL OUTER JOIN
+  people
+ON t.people_id = people.id
 WHERE total_vehicles >= 2 OR total_pets >= 2;
-

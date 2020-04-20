@@ -1,5 +1,10 @@
+-- Create a new database --
+
 DROP DATABASE IF EXISTS crowdstreet_demo;
 CREATE DATABASE crowdstreet_demo;
+
+
+-- Connect to new database and create tables --
 
 \c crowdstreet_demo;
 
@@ -31,4 +36,3 @@ CREATE TABLE people_pet (
   amount     INTEGER NOT NULL,
   PRIMARY KEY (people_id, pet_id)
 );
-
